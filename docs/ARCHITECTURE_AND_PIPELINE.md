@@ -9,6 +9,10 @@
 
 The system is engineered as an enterprise-grade Big Data analytics architecture composed of four decoupled tiers: Distributed Storage, Distributed In-Memory Processing, Metadata/Warehouse Management, and Operational Inference & Evaluation.
 
+![Multi-Modal Big Data Architecture & Pipeline](architecture_diagram.png)
+
+### Interactive Architecture Topology
+
 ```mermaid
 graph TD
     subgraph Storage_Tier["Tier 1: Distributed Storage (Apache Hadoop HDFS)"]

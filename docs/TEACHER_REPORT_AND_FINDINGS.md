@@ -71,6 +71,10 @@ This ensures that every observation sees only coronal telemetry from its past. D
 
 ## 3. Distributed Big Data System Architecture & Tool Justifications
 
+![Multi-Modal Big Data Architecture & Pipeline](architecture_diagram.png)
+
+### Interactive Architecture Topology
+
 ```mermaid
 flowchart TD
     subgraph Data_Storage["Distributed Storage Layer (HDFS)"]

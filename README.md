@@ -28,6 +28,10 @@ Across all rigorous out-of-sample evaluations on untouched Partition 5 (209,809 
 
 ## 2. Distributed Big Data Architecture
 
+![Multi-Modal Big Data Architecture & Pipeline](docs/architecture_diagram.png)
+
+### Interactive Architecture Topology
+
 ```mermaid
 flowchart TD
     subgraph Data_Sources["1. Multi-Modal Data Ingestion"]
