@@ -30,26 +30,26 @@ Across all rigorous out-of-sample evaluations on untouched Partition 5 (209,809 
 
 If you are new to space weather, here is what all the acronyms and data actually mean:
 
-### 🌞 What is a Solar Flare?
-The Sun is not a calm ball of fire—it is a boiling soup of magnetized plasma. Near dark sunspots, intense magnetic field lines get twisted together like tightly wound rubber bands. When they suddenly snap and reconnect, they unleash a massive cosmic explosion called a **Solar Flare**.
+### What is a Solar Flare?
+The Sun is not a calm ball of fire, it is a boiling soup of magnetized plasma. Near dark sunspots, intense magnetic field lines get twisted together like tightly wound rubber bands. When they suddenly snap and reconnect, they unleash a massive cosmic explosion called a **Solar Flare**.
 * **Minor Flares (B- and C-class)**: Tiny firecrackers. Very common, completely harmless to Earth.
 * **Major Flares (M- and X-class)**: Giant radiation blasts that travel at the speed of light, hitting Earth within 8 minutes. They knock out GPS, ground transatlantic flights by blinding radio navigation, fry satellite electronics, and can overload city electrical power grids.
 * **Our Mission**: Build an automated early warning system to predict $\ge$ M-class flares **24 hours in advance**.
 
-### 🧲 Dataset 1: SDO/HMI (SWAN-SF) — "The Loaded Rubber Band"
+### Dataset 1: SDO/HMI (SWAN-SF) — "The Loaded Rubber Band"
 * **SDO (Solar Dynamics Observatory)**: NASA's high-tech satellite constantly observing the Sun from orbit.
 * **HMI (Helioseismic and Magnetic Imager)**: A magnetic camera on SDO that photographs magnetic fields across the Sun's surface.
 * **Magnetogram**: A magnetic heat map showing where magnetic tension is building up around sunspots.
 * **SWAN-SF (*Space Weather ANalytics for Solar Flares*)**: A curated research benchmark that extracted **44 numerical measurements** from these photos every 12 minutes (e.g., total magnetic flux, twist, shear angle, active-region area).
 * **The Catch**: A stretched rubber band has huge stored energy, but it can sit quietly on a table for days without snapping! Relying *only* on magnetic data causes models to sound constant false alarms because energy storage does not equal an immediate explosion.
 
-### 🛰️ Dataset 2: NOAA GOES — "The Heat Trigger Sensor"
+### Dataset 2: NOAA GOES — "The Heat Trigger Sensor"
 * **NOAA GOES (Geostationary Operational Environmental Satellite)**: US weather satellites in geostationary orbit with continuous X-ray sensors pointed at the Sun.
 * **Solar X-Ray Flux**: The overall brightness/intensity of soft X-rays radiating from the Sun, recorded every **1 minute**.
 * **Engineered Coronal Features (5 parameters)**: We calculate the 1-hour rate of change (derivative/speed of brightening), 12-hour baseline temperature, and 24-hour peak X-ray intensity.
 * **Why GOES is the Missing Link**: Minutes to hours before a flare explodes, localized plasma in the corona heats up rapidly, causing a sharp upward surge in X-ray flux. GOES detects this real-time eruption trigger.
 
-### 💡 The Big Data Breakthrough (SWAN + GOES Fusion)
+### The Big Data Breakthrough (SWAN + GOES Fusion)
 * **SWAN-SF tells the model**: *"Is there enough magnetic energy loaded to produce a major blast?"*
 * **NOAA GOES tells the model**: *"Is the thermal trigger actively being pulled right now?"*
 * By combining both datasets at scale across 837,000+ records, our model weeds out false alarms and boosts real operational flare detection skill by **+21.0%**.
