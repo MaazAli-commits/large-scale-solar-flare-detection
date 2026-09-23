@@ -94,7 +94,7 @@ solar-flare-project/
 ├── README.md                      # Complete project overview, architecture & run guide
 ├── docs/                          # Academic documentation & detailed guides
 │   ├── PROJECT_PROPOSAL.md        # Formal course project proposal (CSE412)
-│   ├── TEACHER_REPORT_AND_FINDINGS.md # 6-10 page comprehensive academic research report
+│   ├── REPORT_AND_FINDINGS.md # 6-10 page comprehensive academic research report
 │   ├── ARCHITECTURE_AND_PIPELINE.md # Detailed architecture diagrams & tool justifications
 │   ├── FEATURE_ABLATION.md        # Comprehensive SWAN vs GOES ablation study
 │   ├── HDFS_COMMANDS.md           # HDFS daemon startup, verification, and cluster ops
