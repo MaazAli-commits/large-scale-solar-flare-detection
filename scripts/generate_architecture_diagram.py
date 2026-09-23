@@ -3,156 +3,206 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-fig = plt.figure(figsize=(16, 9), dpi=300, facecolor="#0F172A")
-ax = fig.add_axes([0, 0, 1, 1], facecolor="#0F172A")
+# High resolution, 16:9 widescreen canvas
+fig = plt.figure(figsize=(16, 8.5), dpi=300, facecolor="#0B0F19")
+ax = fig.add_axes([0, 0, 1, 1], facecolor="#0B0F19")
 ax.set_xlim(0, 1600)
-ax.set_ylim(0, 900)
+ax.set_ylim(0, 850)
 ax.axis("off")
 
-# Title Header
-ax.text(800, 860, "Multi-Modal Big Data Architecture & Pipeline", 
-        fontsize=24, fontweight="bold", color="#F8FAFC", ha="center", va="center")
-ax.text(800, 828, "SDO/HMI Magnetograms (SWAN-SF) + NOAA GOES-15 Soft X-Ray Flux | CSE412: Big Data Analytics", 
-        fontsize=13, color="#94A3B8", ha="center", va="center")
+# Title and Subtitle
+ax.text(800, 805, "Operational Solar Flare Forecasting Pipeline", 
+        fontsize=24, fontweight="bold", color="#F8FAFC", ha="center", va="center", fontfamily="sans-serif")
+ax.text(800, 775, "End-to-End Distributed Big Data Architecture | CSE412: Big Data Analytics", 
+        fontsize=13, color="#94A3B8", ha="center", va="center", fontfamily="sans-serif")
 
-def draw_card(ax, x, y, w, h, bg_color, border_color, title, title_color, badge_text=None, badge_color=None):
-    rect_shadow = patches.FancyBboxPatch((x+4, y-4), w, h, boxstyle="round,pad=0,rounding_size=12",
-                                         facecolor="#020617", edgecolor="none", alpha=0.5, zorder=1)
-    ax.add_patch(rect_shadow)
-    rect = patches.FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0,rounding_size=12",
-                                 facecolor=bg_color, edgecolor=border_color, linewidth=1.8, zorder=2)
-    ax.add_patch(rect)
-    ax.text(x + 20, y + h - 28, title, fontsize=13, fontweight="bold", color=title_color, 
-            ha="left", va="center", zorder=3)
-    if badge_text:
-        badge_w = len(badge_text) * 7.5 + 16
-        badge_x = x + w - badge_w - 18
-        badge_rect = patches.FancyBboxPatch((badge_x, y + h - 38), badge_w, 20,
-                                           boxstyle="round,pad=0,rounding_size=6",
-                                           facecolor=badge_color, edgecolor="none", zorder=3)
-        ax.add_patch(badge_rect)
-        ax.text(badge_x + badge_w/2, y + h - 28, badge_text, fontsize=9.5, fontweight="bold", 
-                color="#0F172A", ha="center", va="center", zorder=4)
+# Helper function to draw sleek cards
+def draw_card(ax, x, y, w, h, bg_color, border_color, step_num, step_title, header_color):
+    # Shadow
+    shadow = patches.FancyBboxPatch((x+4, y-4), w, h, boxstyle="round,pad=0,rounding_size=12",
+                                   facecolor="#020617", edgecolor="none", alpha=0.6, zorder=1)
+    ax.add_patch(shadow)
+    # Main card
+    card = patches.FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0,rounding_size=12",
+                                 facecolor=bg_color, edgecolor=border_color, linewidth=2.0, zorder=2)
+    ax.add_patch(card)
+    # Header badge
+    badge_w = 46
+    badge_h = 24
+    badge = patches.FancyBboxPatch((x + 14, y + h - 38), badge_w, badge_h, boxstyle="round,pad=0,rounding_size=6",
+                                  facecolor=border_color, edgecolor="none", zorder=3)
+    ax.add_patch(badge)
+    ax.text(x + 14 + badge_w/2, y + h - 26, step_num, fontsize=11, fontweight="bold", 
+            color="#0B0F19", ha="center", va="center", zorder=4)
+    # Title
+    ax.text(x + 70, y + h - 26, step_title, fontsize=13, fontweight="bold", 
+            color=header_color, ha="left", va="center", zorder=4)
+    # Header divider line
+    ax.plot([x + 14, x + w - 14], [y + h - 50, y + h - 50], color=border_color, alpha=0.4, linewidth=1.2, zorder=3)
 
-def draw_subbox(ax, x, y, w, h, bg_color, border_color, zorder=3):
-    box = patches.FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0,rounding_size=8",
-                                facecolor=bg_color, edgecolor=border_color, linewidth=1.2, zorder=zorder)
-    ax.add_patch(box)
-
-# 1. RAW DATA SOURCES (Top Left)
-draw_card(ax, 50, 480, 420, 310, "#1E293B", "#F97316", "TIER 1: MULTI-MODAL DATA INGESTION", "#FDBA74", "RAW SOURCES", "#FB923C")
-draw_subbox(ax, 70, 630, 380, 110, "#0F172A", "#EA580C")
-ax.text(85, 715, "SDO/HMI SWAN-SF Magnetograms", fontsize=11, fontweight="bold", color="#FED7AA")
-ax.text(85, 690, "• 73,492 Multivariate TSVs (P1 - P5)", fontsize=9.5, color="#CBD5E1")
-ax.text(85, 670, "• 12-min cadence | 44 Photospheric magnetic features", fontsize=9.5, color="#CBD5E1")
-ax.text(85, 650, "• Class: Flare (M/X >= 1.0) vs Quiet (B/C/FQ)", fontsize=9.5, color="#CBD5E1")
-
-draw_subbox(ax, 70, 505, 380, 110, "#0F172A", "#EA580C")
-ax.text(85, 590, "NOAA GOES-15 Coronal X-Ray Irradiance", fontsize=11, fontweight="bold", color="#FED7AA")
-ax.text(85, 565, "• 1-minute high-cadence solar flux (xrsa, xrsb)", fontsize=9.5, color="#CBD5E1")
-ax.text(85, 545, "• Rolling Window: 1h derivative, 12h mean, 24h peak", fontsize=9.5, color="#CBD5E1")
-ax.text(85, 525, "• AS-OF Temporal Alignment (Zero Future Leakage)", fontsize=9.5, color="#CBD5E1")
-
-# 2. HADOOP HDFS STORAGE (Bottom Left)
-draw_card(ax, 50, 90, 420, 340, "#1E293B", "#EAB308", "TIER 2: DISTRIBUTED STORAGE (HADOOP)", "#FDE047", "HDFS CLUSTER", "#FACC15")
-draw_subbox(ax, 70, 240, 380, 140, "#0F172A", "#CA8A04")
-ax.text(85, 355, "HDFS Parquet Warehouse (Port 9000)", fontsize=11, fontweight="bold", color="#FEF08A")
-ax.text(85, 330, "hdfs://localhost:9000/user/maaz/solar_flare/data/", fontsize=8.5, color="#94A3B8")
-ax.text(85, 305, "• Snappy-compressed Columnar Storage (>75% savings)", fontsize=9.5, color="#CBD5E1")
-ax.text(85, 285, "• Block size: 128 MB | Data Locality Scheduling", fontsize=9.5, color="#CBD5E1")
-ax.text(85, 265, "• 837,426 rows across 5 chronological partitions", fontsize=9.5, color="#CBD5E1")
-
-draw_subbox(ax, 70, 110, 380, 115, "#0F172A", "#CA8A04")
-ax.text(85, 200, "Partition Directory Hierarchy", fontsize=11, fontweight="bold", color="#FEF08A")
-ax.text(85, 175, "├── features/partition[1-5].parquet (Unified SWAN+GOES)", fontsize=8.5, color="#A3E635")
-ax.text(85, 155, "├── goes/goes_features.parquet (Coronal flux)", fontsize=8.5, color="#CBD5E1")
-ax.text(85, 135, "└── raw/partition[1-5]/ (Source TSVs)", fontsize=8.5, color="#94A3B8")
-
-# 3. SPARK DISTRIBUTED COMPUTING (Center Column)
-draw_card(ax, 510, 240, 560, 550, "#1E293B", "#0EA5E9", "TIER 3: DISTRIBUTED IN-MEMORY ENGINE (APACHE SPARK 3.5)", "#7DD3FC", "SPARK MLLIB", "#38BDF8")
-
-draw_subbox(ax, 530, 645, 520, 95, "#0F172A", "#0284C7")
-ax.text(545, 715, "1. In-Memory Distributed ETL & Preprocessing", fontsize=11.5, fontweight="bold", color="#BAE6FD")
-ax.text(545, 690, "• Spark Imputer: Median imputation fitted strictly on P1-P3 (zero test leakage)", fontsize=9.5, color="#CBD5E1")
-ax.text(545, 670, "• VectorAssembler: Dynamic assembly (SWAN 44-D vs SWAN+GOES 49-D)", fontsize=9.5, color="#CBD5E1")
-ax.text(545, 650, "• StandardScaler: Distributed Z-score feature scaling across cluster executors", fontsize=9.5, color="#CBD5E1")
-
-draw_subbox(ax, 530, 480, 520, 150, "#0F172A", "#0284C7")
-ax.text(545, 605, "2. Distributed Random Forest Induction", fontsize=11.5, fontweight="bold", color="#BAE6FD")
-ax.text(545, 580, "• Cost-Sensitive Weighting: 13.17:1 positive flare penalty in split impurity", fontsize=9.5, color="#CBD5E1")
-ax.text(545, 560, "• Hyperparameter Grid: 30 staged models across depth, trees, feature subsets", fontsize=9.5, color="#CBD5E1")
-ax.text(545, 540, "• Tree Parallelization: DTStatsAggregator broadcasts splits across workers", fontsize=9.5, color="#CBD5E1")
-ax.text(545, 520, "• Probability Distribution Generation: Full soft predictions retained", fontsize=9.5, color="#CBD5E1")
-ax.text(545, 500, "• Asynchronous Execution: Non-blocking parallel partition evaluation", fontsize=9.5, color="#CBD5E1")
-
-draw_subbox(ax, 530, 260, 520, 205, "#0F172A", "#0284C7")
-ax.text(545, 440, "3. Chronological Solar Cycle Split (Zero Leakage)", fontsize=11.5, fontweight="bold", color="#BAE6FD")
-
-draw_subbox(ax, 545, 375, 490, 45, "#1E293B", "#10B981")
-ax.text(555, 400, "TRAINING SET (P1, P2, P3)", fontsize=9.5, fontweight="bold", color="#6EE7B7")
-ax.text(555, 383, "518,803 samples | Solar Cycle 24 Ascent & Peak (2010 - 2014)", fontsize=8.5, color="#E2E8F0")
-
-draw_subbox(ax, 545, 320, 490, 45, "#1E293B", "#F59E0B")
-ax.text(555, 345, "VALIDATION SET (P4)", fontsize=9.5, fontweight="bold", color="#FDE68A")
-ax.text(555, 328, "108,814 samples | Solar Maximum & Threshold Calibration (2014 - 2015)", fontsize=8.5, color="#E2E8F0")
-
-draw_subbox(ax, 545, 265, 490, 45, "#1E293B", "#EF4444")
-ax.text(555, 290, "UNTOUCHED TEST SET (P5)", fontsize=9.5, fontweight="bold", color="#FCA5A5")
-ax.text(555, 273, "209,809 samples | Solar Minimum Shift Evaluation (2015 - 2018)", fontsize=8.5, color="#E2E8F0")
-
-# 4. HIVE METASTORE & WAREHOUSE (Center Bottom)
-draw_card(ax, 510, 90, 560, 130, "#1E293B", "#10B981", "TIER 4: METASTORE & ANALYTICS WAREHOUSE (APACHE HIVE 4.0)", "#6EE7B7", "HIVE WAREHOUSE", "#34D399")
-draw_subbox(ax, 530, 105, 520, 75, "#0F172A", "#059669")
-ax.text(545, 160, "Schema-on-Read Metastore: solar_flare Database", fontsize=10.5, fontweight="bold", color="#A7F3D0")
-ax.text(545, 140, "• Table model_experiments: 33 runs cataloging hyperparams, TSS, F1, PR-AUC", fontsize=9, color="#CBD5E1")
-ax.text(545, 120, "• Table model_predictions: 209k test inference probabilities for auditability", fontsize=9, color="#CBD5E1")
-
-# 5. OPERATIONAL SPACE WEATHER INFERENCE (Right Column)
-draw_card(ax, 1110, 90, 440, 700, "#1E293B", "#8B5CF6", "TIER 5: OPERATIONAL SPACE WEATHER INFERENCE", "#DDD6FE", "OPERATIONAL", "#A78BFA")
-
-draw_subbox(ax, 1130, 530, 400, 210, "#0F172A", "#7C3AED")
-ax.text(1145, 715, "Operational Threshold Calibration (P4)", fontsize=11, fontweight="bold", color="#E9D5FF")
-ax.text(1145, 685, "Traditional ML Default (Threshold = 0.5):", fontsize=9, fontweight="bold", color="#F87171")
-ax.text(1145, 668, "• Fails operational deployment due to high false alarms", fontsize=8.5, color="#CBD5E1")
-ax.text(1145, 645, "Calibrated False Alarm Ceilings:", fontsize=9, fontweight="bold", color="#38BDF8")
-ax.text(1145, 625, "• Operational Target 1: FPR <= 10%", fontsize=9, color="#CBD5E1")
-ax.text(1145, 605, "  SWAN+GOES: P5 TSS = 0.4314 | PR-AUC = 0.3668", fontsize=8.5, color="#FCD34D")
-ax.text(1145, 580, "• Strict Mission Target 2: FPR <= 5%", fontsize=9, color="#CBD5E1")
-ax.text(1145, 560, "  SWAN+GOES: P5 TSS = 0.3365 vs SWAN: 0.2781", fontsize=8.5, color="#4ADE80")
-ax.text(1145, 542, "  (+21.0% relative gain, catches 512 more flares)", fontsize=8.5, color="#4ADE80")
-
-draw_subbox(ax, 1130, 310, 400, 205, "#0F172A", "#7C3AED")
-ax.text(1145, 490, "Solar Cycle Distribution Shift", fontsize=11, fontweight="bold", color="#E9D5FF")
-ax.text(1145, 465, "P1-P3 Training: Solar Maximum (4.6% flares)", fontsize=9, color="#CBD5E1")
-ax.text(1145, 445, "P5 Test: Solar Minimum (0.6% flares - 8x sparser)", fontsize=9, color="#CBD5E1")
-ax.text(1145, 420, "Physical Role of GOES Soft X-Rays:", fontsize=9.5, fontweight="bold", color="#FDE047")
-ax.text(1145, 395, "• Photospheric magnetograms store free energy", fontsize=8.5, color="#CBD5E1")
-ax.text(1145, 375, "  (acts as energy reservoir, not sudden trigger)", fontsize=8.5, color="#CBD5E1")
-ax.text(1145, 350, "• GOES X-ray derivative tracks coronal reconnection", fontsize=8.5, color="#CBD5E1")
-ax.text(1145, 330, "  (serves as real-time flare eruption trigger)", fontsize=8.5, color="#CBD5E1")
-
-draw_subbox(ax, 1130, 110, 400, 185, "#0F172A", "#7C3AED")
-ax.text(1145, 270, "Stakeholder Deliverables", fontsize=11, fontweight="bold", color="#E9D5FF")
-ax.text(1145, 245, "• Spark SQL Automated Verification", fontsize=9, color="#CBD5E1")
-ax.text(1145, 225, "• Hive Queryable Benchmark Metastore", fontsize=9, color="#CBD5E1")
-ax.text(1145, 205, "• Interactive Jupyter Notebook (ML_Training.ipynb)", fontsize=9, color="#CBD5E1")
-ax.text(1145, 185, "• Academic Teacher Report (6-10 pages)", fontsize=9, color="#CBD5E1")
-ax.text(1145, 165, "• Reproducible End-to-End Pipeline Scripts", fontsize=9, color="#CBD5E1")
-ax.text(1145, 140, "CSE412 Final Grade Criteria: 100% Satisfied", fontsize=9.5, fontweight="bold", color="#34D399")
-
-# Connective Arrows
-def draw_arrow(ax, x1, y1, x2, y2, color="#64748B"):
+# Helper to draw bold connecting arrows
+def draw_flow_arrow(ax, x1, y1, x2, y2, color="#38BDF8"):
     ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
-                arrowprops=dict(arrowstyle="->,head_width=0.4,head_length=0.6",
-                                color=color, lw=2.2, shrinkA=0, shrinkB=0), zorder=10)
+                arrowprops=dict(arrowstyle="-|>,head_width=0.6,head_length=0.9",
+                                color=color, lw=3.0, shrinkA=0, shrinkB=0), zorder=10)
 
-draw_arrow(ax, 260, 480, 260, 430, "#F97316")
-draw_arrow(ax, 470, 380, 510, 380, "#EAB308")
-draw_arrow(ax, 470, 640, 510, 640, "#F97316")
-draw_arrow(ax, 790, 240, 790, 220, "#0EA5E9")
-draw_arrow(ax, 1070, 550, 1110, 550, "#38BDF8")
-draw_arrow(ax, 1070, 155, 1110, 155, "#10B981")
+# Card dimensions
+card_w = 265
+card_h = 420
+card_y = 290
+gap = 42
+start_x = 55
+
+# 1. INGESTION CARD
+x1 = start_x
+draw_card(ax, x1, card_y, card_w, card_h, "#131C31", "#FB923C", "01", "INGESTION", "#FED7AA")
+# Content lines
+ax.text(x1 + 18, card_y + 335, "SDO/HMI SWAN-SF", fontsize=11.5, fontweight="bold", color="#FDBA74")
+ax.text(x1 + 18, card_y + 312, "• 73,492 Multivariate TSVs", fontsize=10, color="#CBD5E1")
+ax.text(x1 + 18, card_y + 292, "• 44 Photospheric Features", fontsize=10, color="#CBD5E1")
+ax.text(x1 + 18, card_y + 272, "• 12-min Cadence (P1 - P5)", fontsize=10, color="#CBD5E1")
+
+ax.text(x1 + 18, card_y + 230, "NOAA GOES-15 Satellite", fontsize=11.5, fontweight="bold", color="#FDBA74")
+ax.text(x1 + 18, card_y + 207, "• Continuous X-ray Flux", fontsize=10, color="#CBD5E1")
+ax.text(x1 + 18, card_y + 187, "• 1h Derivative & 24h Peak", fontsize=10, color="#CBD5E1")
+ax.text(x1 + 18, card_y + 167, "• 5 Coronal Features", fontsize=10, color="#CBD5E1")
+
+ax.text(x1 + 18, card_y + 125, "AS-OF Temporal Join", fontsize=11.5, fontweight="bold", color="#FDBA74")
+ax.text(x1 + 18, card_y + 102, "• Point-in-time Alignment", fontsize=10, color="#CBD5E1")
+ax.text(x1 + 18, card_y + 82, "• Zero Future Leakage", fontsize=10, color="#CBD5E1")
+
+# Arrow 1 -> 2
+draw_flow_arrow(ax, x1 + card_w + 6, card_y + card_h/2, x1 + card_w + gap - 6, card_y + card_h/2, "#FB923C")
+
+# 2. HDFS STORAGE CARD
+x2 = x1 + card_w + gap
+draw_card(ax, x2, card_y, card_w, card_h, "#131C31", "#FACC15", "02", "STORAGE", "#FEF08A")
+ax.text(x2 + 18, card_y + 335, "Apache Hadoop HDFS", fontsize=11.5, fontweight="bold", color="#FDE047")
+ax.text(x2 + 18, card_y + 312, "• Port 9000 Cluster", fontsize=10, color="#CBD5E1")
+ax.text(x2 + 18, card_y + 292, "• 128 MB Block Size", fontsize=10, color="#CBD5E1")
+ax.text(x2 + 18, card_y + 272, "• Data Locality Scheduling", fontsize=10, color="#CBD5E1")
+
+ax.text(x2 + 18, card_y + 230, "Parquet Warehouse", fontsize=11.5, fontweight="bold", color="#FDE047")
+ax.text(x2 + 18, card_y + 207, "• 837,426 Unified Rows", fontsize=10, color="#CBD5E1")
+ax.text(x2 + 18, card_y + 187, "• 49 Feature Columns", fontsize=10, color="#CBD5E1")
+ax.text(x2 + 18, card_y + 167, "• Snappy Compressed", fontsize=10, color="#CBD5E1")
+
+ax.text(x2 + 18, card_y + 125, "5 Benchmark Splits", fontsize=11.5, fontweight="bold", color="#FDE047")
+ax.text(x2 + 18, card_y + 102, "• Chronological Order", fontsize=10, color="#CBD5E1")
+ax.text(x2 + 18, card_y + 82, "• >75% Footprint Reduction", fontsize=10, color="#CBD5E1")
+
+# Arrow 2 -> 3
+draw_flow_arrow(ax, x2 + card_w + 6, card_y + card_h/2, x2 + card_w + gap - 6, card_y + card_h/2, "#FACC15")
+
+# 3. SPARK ETL CARD
+x3 = x2 + card_w + gap
+draw_card(ax, x3, card_y, card_w, card_h, "#131C31", "#38BDF8", "03", "SPARK ETL", "#BAE6FD")
+ax.text(x3 + 18, card_y + 335, "Apache Spark 3.5", fontsize=11.5, fontweight="bold", color="#7DD3FC")
+ax.text(x3 + 18, card_y + 312, "• In-Memory DataFrames", fontsize=10, color="#CBD5E1")
+ax.text(x3 + 18, card_y + 292, "• Distributed RDD DAGs", fontsize=10, color="#CBD5E1")
+ax.text(x3 + 18, card_y + 272, "• Multi-Worker Parallelism", fontsize=10, color="#CBD5E1")
+
+ax.text(x3 + 18, card_y + 230, "Feature Pipelines", fontsize=11.5, fontweight="bold", color="#7DD3FC")
+ax.text(x3 + 18, card_y + 207, "• Median Imputer (P1-P3)", fontsize=10, color="#CBD5E1")
+ax.text(x3 + 18, card_y + 187, "• VectorAssembler (49-D)", fontsize=10, color="#CBD5E1")
+ax.text(x3 + 18, card_y + 167, "• StandardScaler (Z-Score)", fontsize=10, color="#CBD5E1")
+
+ax.text(x3 + 18, card_y + 125, "Solar Partitioning", fontsize=11.5, fontweight="bold", color="#7DD3FC")
+ax.text(x3 + 18, card_y + 102, "• Train: P1-P3 (518k rows)", fontsize=10, color="#CBD5E1")
+ax.text(x3 + 18, card_y + 82, "• Test: P5 (209k rows)", fontsize=10, color="#CBD5E1")
+
+# Arrow 3 -> 4
+draw_flow_arrow(ax, x3 + card_w + 6, card_y + card_h/2, x3 + card_w + gap - 6, card_y + card_h/2, "#38BDF8")
+
+# 4. SPARK MLLIB CARD
+x4 = x3 + card_w + gap
+draw_card(ax, x4, card_y, card_w, card_h, "#131C31", "#C084FC", "04", "SPARK ML", "#E9D5FF")
+ax.text(x4 + 18, card_y + 335, "Distributed RF", fontsize=11.5, fontweight="bold", color="#D8B4FE")
+ax.text(x4 + 18, card_y + 312, "• Spark MLlib Random Forest", fontsize=10, color="#CBD5E1")
+ax.text(x4 + 18, card_y + 292, "• 100 Trees | Depth 10", fontsize=10, color="#CBD5E1")
+ax.text(x4 + 18, card_y + 272, "• DTStatsAggregator", fontsize=10, color="#CBD5E1")
+
+ax.text(x4 + 18, card_y + 230, "Imbalance Handling", fontsize=11.5, fontweight="bold", color="#D8B4FE")
+ax.text(x4 + 18, card_y + 207, "• 13.17 : 1 Cost Weight", fontsize=10, color="#CBD5E1")
+ax.text(x4 + 18, card_y + 187, "• Natural Physics Preserved", fontsize=10, color="#CBD5E1")
+ax.text(x4 + 18, card_y + 167, "• Zero Synthetic Bloat", fontsize=10, color="#CBD5E1")
+
+ax.text(x4 + 18, card_y + 125, "Threshold Search", fontsize=11.5, fontweight="bold", color="#D8B4FE")
+ax.text(x4 + 18, card_y + 102, "• Calibrated on P4 Valid", fontsize=10, color="#CBD5E1")
+ax.text(x4 + 18, card_y + 82, "• Max TSS under FPR Budget", fontsize=10, color="#CBD5E1")
+
+# Arrow 4 -> 5
+draw_flow_arrow(ax, x4 + card_w + 6, card_y + card_h/2, x4 + card_w + gap - 6, card_y + card_h/2, "#C084FC")
+
+# 5. OPERATIONAL OUTPUT CARD
+x5 = x4 + card_w + gap
+draw_card(ax, x5, card_y, card_w, card_h, "#131C31", "#FB7185", "05", "FORECAST", "#FFE4E6")
+ax.text(x5 + 18, card_y + 335, "Operational Alert", fontsize=11.5, fontweight="bold", color="#FDA4AF")
+ax.text(x5 + 18, card_y + 312, "• 24h Early Flare Warning", fontsize=10, color="#CBD5E1")
+ax.text(x5 + 18, card_y + 292, "• M- & X-Class Flares", fontsize=10, color="#CBD5E1")
+ax.text(x5 + 18, card_y + 272, "• Satellite & Grid Alerting", fontsize=10, color="#CBD5E1")
+
+ax.text(x5 + 18, card_y + 230, "Strict FPR <= 5%", fontsize=11.5, fontweight="bold", color="#FDA4AF")
+ax.text(x5 + 18, card_y + 207, "• SWAN+GOES: TSS = 0.3365", fontsize=10, fontweight="bold", color="#4ADE80")
+ax.text(x5 + 18, card_y + 187, "• SWAN-Only: TSS = 0.2781", fontsize=10, color="#94A3B8")
+ax.text(x5 + 18, card_y + 167, "• +21.0% Relative Gain", fontsize=10, fontweight="bold", color="#FACC15")
+
+ax.text(x5 + 18, card_y + 125, "Key Impact", fontsize=11.5, fontweight="bold", color="#FDA4AF")
+ax.text(x5 + 18, card_y + 102, "• 512 More Flares Caught", fontsize=10, fontweight="bold", color="#4ADE80")
+ax.text(x5 + 18, card_y + 82, "• Holds FPR to 2.33%", fontsize=10, color="#CBD5E1")
+
+# BOTTOM WIDE CARD: APACHE HIVE METASTORE
+hive_x = x2
+hive_w = x5 + card_w - x2
+hive_h = 135
+hive_y = 75
+
+# Shadow
+shadow_hive = patches.FancyBboxPatch((hive_x+4, hive_y-4), hive_w, hive_h, boxstyle="round,pad=0,rounding_size=12",
+                                     facecolor="#020617", edgecolor="none", alpha=0.6, zorder=1)
+ax.add_patch(shadow_hive)
+# Main card
+card_hive = patches.FancyBboxPatch((hive_x, hive_y), hive_w, hive_h, boxstyle="round,pad=0,rounding_size=12",
+                                  facecolor="#0F241D", edgecolor="#34D399", linewidth=2.0, zorder=2)
+ax.add_patch(card_hive)
+
+# Hive Header
+badge_hive = patches.FancyBboxPatch((hive_x + 18, hive_y + hive_h - 36), 52, 24, boxstyle="round,pad=0,rounding_size=6",
+                                    facecolor="#34D399", edgecolor="none", zorder=3)
+ax.add_patch(badge_hive)
+ax.text(hive_x + 18 + 26, hive_y + hive_h - 24, "HIVE", fontsize=10.5, fontweight="bold", 
+        color="#0B0F19", ha="center", va="center", zorder=4)
+ax.text(hive_x + 80, hive_y + hive_h - 24, "APACHE HIVE 4.0 METASTORE & EXPERIMENT AUDIT LAYER", 
+        fontsize=13, fontweight="bold", color="#A7F3D0", ha="left", va="center", zorder=4)
+
+# 3 Columns inside Hive card
+# Col 1: Database
+ax.text(hive_x + 25, hive_y + 70, "Schema-on-Read Metastore", fontsize=11, fontweight="bold", color="#6EE7B7")
+ax.text(hive_x + 25, hive_y + 48, "• Database: solar_flare", fontsize=9.5, color="#CBD5E1")
+ax.text(hive_x + 25, hive_y + 28, "• Decoupled Storage & Compute", fontsize=9.5, color="#CBD5E1")
+
+# Col 2: model_experiments table
+ax.text(hive_x + 360, hive_y + 70, "Table: model_experiments", fontsize=11, fontweight="bold", color="#6EE7B7")
+ax.text(hive_x + 360, hive_y + 48, "• 33 cataloged benchmark runs", fontsize=9.5, color="#CBD5E1")
+ax.text(hive_x + 360, hive_y + 28, "• Hyperparameters, TSS, F1, PR-AUC", fontsize=9.5, color="#CBD5E1")
+
+# Col 3: model_predictions table
+ax.text(hive_x + 720, hive_y + 70, "Table: model_predictions", fontsize=11, fontweight="bold", color="#6EE7B7")
+ax.text(hive_x + 720, hive_y + 48, "• 209,809 P5 test inferences", fontsize=9.5, color="#CBD5E1")
+ax.text(hive_x + 720, hive_y + 28, "• Full probability distributions", fontsize=9.5, color="#CBD5E1")
+
+# Vertical Arrows connecting ML & Storage to Hive
+# Spark ML (Card 4) down to Hive
+draw_flow_arrow(ax, x4 + card_w/2, card_y - 4, x4 + card_w/2, hive_y + hive_h + 4, "#34D399")
+ax.text(x4 + card_w/2 + 10, (card_y + hive_y + hive_h)/2, "Catalog Experiments", fontsize=9, color="#6EE7B7", va="center")
+
+# Storage (Card 2) down to Hive
+draw_flow_arrow(ax, x2 + card_w/2, card_y - 4, x2 + card_w/2, hive_y + hive_h + 4, "#34D399")
+ax.text(x2 + card_w/2 + 10, (card_y + hive_y + hive_h)/2, "External Tables", fontsize=9, color="#6EE7B7", va="center")
 
 plt.savefig("/home/maaz/solar-flare-project/docs/architecture_diagram.png", dpi=300, facecolor=fig.get_facecolor(), edgecolor="none", bbox_inches="tight")
 plt.savefig("/home/maaz/solar-flare-project/docs/architecture_diagram.svg", facecolor=fig.get_facecolor(), edgecolor="none", bbox_inches="tight")
-print("SUCCESS: Generated architecture_diagram.png and architecture_diagram.svg")
+plt.savefig("/home/maaz/solar-flare-project/architecture_diagram.png", dpi=300, facecolor=fig.get_facecolor(), edgecolor="none", bbox_inches="tight")
+plt.savefig("/home/maaz/solar-flare-project/architecture_diagram.svg", facecolor=fig.get_facecolor(), edgecolor="none", bbox_inches="tight")
+
+print("SUCCESS: Clean flowchart diagram generated")

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-09-23T10:39:38.573989</dc:date>
+    <dc:date>2026-09-23T10:39:39.455185</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 49.68 110.88 49.68 119.52
 L 49.68 404.64 
 Q 49.68 413.28 58.32 413.28 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #020617; opacity: 0.6"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #020617; opacity: 0.6"/>
    </g>
    <g id="patch_3">
     <path d="M 279.36 413.28 
@@ -53,7 +53,7 @@ Q 270.72 110.88 270.72 119.52
 L 270.72 404.64 
 Q 270.72 413.28 279.36 413.28 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #020617; opacity: 0.6"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #020617; opacity: 0.6"/>
    </g>
    <g id="patch_4">
     <path d="M 500.4 413.28 
@@ -66,7 +66,7 @@ Q 491.76 110.88 491.76 119.52
 L 491.76 404.64 
 Q 491.76 413.28 500.4 413.28 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #020617; opacity: 0.6"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #020617; opacity: 0.6"/>
    </g>
    <g id="patch_5">
     <path d="M 721.44 413.28 
@@ -79,7 +79,7 @@ Q 712.8 110.88 712.8 119.52
 L 712.8 404.64 
 Q 712.8 413.28 721.44 413.28 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #020617; opacity: 0.6"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #020617; opacity: 0.6"/>
    </g>
    <g id="patch_6">
     <path d="M 942.48 413.28 
@@ -92,7 +92,7 @@ Q 933.84 110.88 933.84 119.52
 L 933.84 404.64 
 Q 933.84 413.28 942.48 413.28 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #020617; opacity: 0.6"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #020617; opacity: 0.6"/>
    </g>
    <g id="patch_7">
     <path d="M 279.36 568.08 
@@ -105,7 +105,7 @@ Q 270.72 470.88 270.72 479.52
 L 270.72 559.44 
 Q 270.72 568.08 279.36 568.08 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #020617; opacity: 0.6"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #020617; opacity: 0.6"/>
    </g>
    <g id="patch_8">
     <path d="M 55.44 410.4 
@@ -118,7 +118,7 @@ Q 46.8 108 46.8 116.64
 L 46.8 401.76 
 Q 46.8 410.4 55.44 410.4 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #131c31; stroke: #fb923c; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #131c31; stroke: #fb923c; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 276.48 410.4 
@@ -131,7 +131,7 @@ Q 267.84 108 267.84 116.64
 L 267.84 401.76 
 Q 267.84 410.4 276.48 410.4 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #131c31; stroke: #facc15; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #131c31; stroke: #facc15; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
     <path d="M 497.52 410.4 
@@ -144,7 +144,7 @@ Q 488.88 108 488.88 116.64
 L 488.88 401.76 
 Q 488.88 410.4 497.52 410.4 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #131c31; stroke: #38bdf8; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #131c31; stroke: #38bdf8; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_11">
     <path d="M 718.56 410.4 
@@ -157,7 +157,7 @@ Q 709.92 108 709.92 116.64
 L 709.92 401.76 
 Q 709.92 410.4 718.56 410.4 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #131c31; stroke: #c084fc; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #131c31; stroke: #c084fc; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_12">
     <path d="M 939.6 410.4 
@@ -170,7 +170,7 @@ Q 930.96 108 930.96 116.64
 L 930.96 401.76 
 Q 930.96 410.4 939.6 410.4 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #131c31; stroke: #fb7185; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #131c31; stroke: #fb7185; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_13">
     <path d="M 276.48 565.2 
@@ -183,7 +183,7 @@ Q 267.84 468 267.84 476.64
 L 267.84 556.56 
 Q 267.84 565.2 276.48 565.2 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #0f241d; stroke: #34d399; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #0f241d; stroke: #34d399; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Operational Solar Flare Forecasting Pipeline -->
@@ -1256,12 +1256,12 @@ Q 56.88 118.08 56.88 122.4
 L 56.88 131.04 
 Q 56.88 135.36 61.2 135.36 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #fb923c"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #fb923c"/>
    </g>
    <g id="line2d_1">
     <path d="M 56.88 144 
 L 227.52 144 
-" clip-path="url(#pb2cb97d19f)" style="fill: none; stroke: #fb923c; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: none; stroke: #fb923c; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="text_3">
     <!-- SDO/HMI SWAN-SF -->
@@ -2237,12 +2237,12 @@ Q 277.92 118.08 277.92 122.4
 L 277.92 131.04 
 Q 277.92 135.36 282.24 135.36 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #facc15"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #facc15"/>
    </g>
    <g id="line2d_2">
     <path d="M 277.92 144 
 L 448.56 144 
-" clip-path="url(#pb2cb97d19f)" style="fill: none; stroke: #facc15; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: none; stroke: #facc15; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="text_14">
     <!-- Apache Hadoop HDFS -->
@@ -2964,12 +2964,12 @@ Q 498.96 118.08 498.96 122.4
 L 498.96 131.04 
 Q 498.96 135.36 503.28 135.36 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #38bdf8"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #38bdf8"/>
    </g>
    <g id="line2d_3">
     <path d="M 498.96 144 
 L 669.6 144 
-" clip-path="url(#pb2cb97d19f)" style="fill: none; stroke: #38bdf8; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: none; stroke: #38bdf8; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="text_25">
     <!-- Apache Spark 3.5 -->
@@ -3375,12 +3375,12 @@ Q 720 118.08 720 122.4
 L 720 131.04 
 Q 720 135.36 724.32 135.36 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #c084fc"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #c084fc"/>
    </g>
    <g id="line2d_4">
     <path d="M 720 144 
 L 890.64 144 
-" clip-path="url(#pb2cb97d19f)" style="fill: none; stroke: #c084fc; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: none; stroke: #c084fc; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="text_36">
     <!-- Distributed RF -->
@@ -3766,12 +3766,12 @@ Q 941.04 118.08 941.04 122.4
 L 941.04 131.04 
 Q 941.04 135.36 945.36 135.36 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #fb7185"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #fb7185"/>
    </g>
    <g id="line2d_5">
     <path d="M 941.04 144 
 L 1111.68 144 
-" clip-path="url(#pb2cb97d19f)" style="fill: none; stroke: #fb7185; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: none; stroke: #fb7185; stroke-opacity: 0.4; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="text_47">
     <!-- Operational Alert -->
@@ -4365,7 +4365,7 @@ Q 280.8 476.64 280.8 480.96
 L 280.8 489.6 
 Q 280.8 493.92 285.12 493.92 
 z
-" clip-path="url(#pb2cb97d19f)" style="fill: #34d399"/>
+" clip-path="url(#pa7c2eb07b2)" style="fill: #34d399"/>
    </g>
    <g id="text_58">
     <!-- Schema-on-Read Metastore -->
@@ -5139,7 +5139,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pb2cb97d19f">
+  <clipPath id="pa7c2eb07b2">
    <rect x="7.2" y="7.2" width="1152" height="612"/>
   </clipPath>
  </defs>
