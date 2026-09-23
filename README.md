@@ -49,7 +49,7 @@ The Sun is not a calm ball of fire, it is a boiling soup of magnetized plasma. N
 * **Engineered Coronal Features (5 parameters)**: We calculate the 1-hour rate of change (derivative/speed of brightening), 12-hour baseline temperature, and 24-hour peak X-ray intensity.
 * **Why GOES is the Missing Link**: Minutes to hours before a flare explodes, localized plasma in the corona heats up rapidly, causing a sharp upward surge in X-ray flux. GOES detects this real-time eruption trigger.
 
-### The Big Data Breakthrough (SWAN + GOES Fusion)
+### Key Finding: SWAN + GOES Fusion
 * **SWAN-SF tells the model**: *"Is there enough magnetic energy loaded to produce a major blast?"*
 * **NOAA GOES tells the model**: *"Is the thermal trigger actively being pulled right now?"*
 * By combining both datasets at scale across 837,000+ records, our model weeds out false alarms and boosts real operational flare detection skill by **+21.0%**.
