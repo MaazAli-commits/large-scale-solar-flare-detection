@@ -51,7 +51,11 @@ This project integrates two primary space weather datasets totaling over 837,000
 
 ## 3. Big Data System Architecture & Tool Justifications
 
+![Multi-Modal Big Data Architecture & Pipeline](architecture_diagram.png)
+
 Given the dataset size (~8.9 GB raw TSVs) and continuous time-series joins, traditional single-node Python/Pandas workflows suffer from out-of-memory crashes and prohibitive training runtimes. We employ a 4-tier distributed Big Data architecture:
+
+### Interactive Architecture Topology
 
 ```mermaid
 graph LR
