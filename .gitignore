@@ -1,0 +1,44 @@
+# ==============================================================================
+# Solar Flare Prediction Project: .gitignore
+# CSE412: Big Data Analytics
+# ==============================================================================
+
+# 1. Raw and Processed Datasets (Managed in HDFS / External Storage)
+data/
+*.parquet
+*.tsv
+*.csv
+
+# 2. Virtual Environments & Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+spark_env/
+.venv/
+
+# 3. Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# 4. Apache Spark & Hadoop Local Metadata / Temp Files
+derby.log
+metastore_db/
+spark-warehouse/
+*.log
+/tmp/
+.sparkStaging/
+
+# 5. OS & IDE Metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 6. Saved ML Model Checkpoints
+models/
