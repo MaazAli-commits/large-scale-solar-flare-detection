@@ -3,401 +3,517 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Operational Solar Flare Forecasting & Big Data Analytics | CSE412</title>
+  <title>Solar Flare Operations & Big Data Analytics | CSE412</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-  <!-- Top Application Header -->
-  <header class="app-header">
-    <div class="header-left">
-      <div class="brand-badge">CSE412</div>
-      <div class="brand-text">
-        <h1>Operational Solar Flare Forecasting & Analytics Platform</h1>
-        <p class="subtitle">Distributed Big Data Pipeline: Apache Hadoop HDFS • Apache Spark 3.5 MLlib • Apache Hive 4.0</p>
+<body class="cosmic-theme">
+
+  <!-- Ambient Background Starfield Canvas -->
+  <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+
+  <!-- Top Glassmorphic Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-orb">
+          <div class="orb-inner"></div>
+        </div>
+        <div class="brand-meta">
+          <div class="brand-title">HELIOS-ANALYTICS <span class="tag-version">CSE412</span></div>
+          <div class="brand-subtitle">Distributed Big Data Pipeline for Operational Solar Flare Forecasting</div>
+        </div>
       </div>
-    </div>
-    <div class="header-right">
-      <div class="team-badge">
-        <span class="team-label">Team Members:</span>
-        <span class="team-names">Mohammed Maaz Ali • Vidya • Roshan</span>
-      </div>
-      <div class="cluster-status-pills">
-        <span class="status-pill status-hdfs"><span class="dot"></span> HDFS: 837,426 rows (P1–P5)</span>
-        <span class="status-pill status-spark"><span class="dot"></span> Spark MLlib: 100 Trees (13.17x Wt)</span>
-        <span class="status-pill status-hive"><span class="dot"></span> Hive: 33 Cataloged Runs</span>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-links">
+        <button class="nav-pill active" data-tab="tab-observatory" id="btn-tab-observatory">
+          <span class="pill-dot"></span>
+          <span class="pill-text">01. Forecast Observatory</span>
+        </button>
+        <button class="nav-pill" data-tab="tab-pipeline" id="btn-tab-pipeline">
+          <span class="pill-dot"></span>
+          <span class="pill-text">02. Big Data Architecture</span>
+        </button>
+        <button class="nav-pill" data-tab="tab-hive" id="btn-tab-hive">
+          <span class="pill-dot"></span>
+          <span class="pill-text">03. Hive Metastore</span>
+        </button>
+      </nav>
+
+      <!-- Team Attribution Badge -->
+      <div class="nav-team">
+        <div class="team-label">GROUP OF 3</div>
+        <div class="team-members">Mohammed Maaz Ali • Vidya • Roshan</div>
       </div>
     </div>
   </header>
 
-  <!-- Main Navigation Tabs -->
-  <nav class="nav-tabs">
-    <button class="nav-tab active" data-tab="tab-forecast" id="tab-btn-forecast">
-      <span class="tab-num">01</span>
-      <span class="tab-title">Forecasting & Model Comparison</span>
-      <span class="tab-desc">Operational Evaluation & SWAN vs SWAN+GOES Toggle</span>
-    </button>
-    <button class="nav-tab" data-tab="tab-pipeline" id="tab-btn-pipeline">
-      <span class="tab-num">02</span>
-      <span class="tab-title">Big Data Pipeline & Infrastructure</span>
-      <span class="tab-desc">HDFS Storage • Spark Distributed ETL • Tool Justifications</span>
-    </button>
-    <button class="nav-tab" data-tab="tab-hive" id="tab-btn-hive">
-      <span class="tab-num">03</span>
-      <span class="tab-title">Hive Metastore & Experiment Catalog</span>
-      <span class="tab-desc">33 Cataloged Runs • SQL Queries • P5 Inferences</span>
-    </button>
-  </nav>
+  <!-- Main View Container -->
+  <main class="main-content">
 
-  <!-- Main Container -->
-  <main class="app-main">
-
-    <!-- TAB 1: FORECASTING & MODEL COMPARISON -->
-    <section id="tab-forecast" class="tab-content active">
+    <!-- =========================================================================
+         TAB 1: THE FORECAST OBSERVATORY & COMPARATIVE ANALYSIS
+         ========================================================================= -->
+    <section id="tab-observatory" class="tab-pane active">
       
-      <!-- Top Control Bar: Operating Policy & Test Event Selector -->
-      <div class="control-panel">
-        <div class="control-group">
-          <label class="control-label">1. Select Operating Policy (Evaluation Ceiling on Partition 5):</label>
-          <div class="policy-toggle-group">
-            <button class="policy-btn active" data-policy="fpr5" id="btn-policy-fpr5">
-              <span class="policy-badge">STRICT CEILING</span>
-              <span class="policy-name">FPR ≤ 5% Policy</span>
-              <span class="policy-sub">Target for Mission-Critical Infrastructure</span>
+      <!-- Top Action Bar: Segmented Policy & Event Selectors -->
+      <div class="action-bar">
+        <div class="action-segment">
+          <div class="segment-label">Operating Policy (Partition 5 Evaluation):</div>
+          <div class="segmented-control">
+            <button class="seg-btn active" data-policy="fpr5" id="btn-fpr5">
+              <span class="seg-title">FPR ≤ 5% Policy</span>
+              <span class="seg-hint">Mission-Critical Target</span>
             </button>
-            <button class="policy-btn" data-policy="fpr10" id="btn-policy-fpr10">
-              <span class="policy-badge">STANDARD BUDGET</span>
-              <span class="policy-name">FPR ≤ 10% Policy</span>
-              <span class="policy-sub">Balanced Operational Warning Window</span>
+            <button class="seg-btn" data-policy="fpr10" id="btn-fpr10">
+              <span class="seg-title">FPR ≤ 10% Policy</span>
+              <span class="seg-hint">Standard Agency Budget</span>
             </button>
-            <button class="policy-btn" data-policy="unconstrained" id="btn-policy-unconstrained">
-              <span class="policy-badge">UNCONSTRAINED</span>
-              <span class="policy-name">Max TSS Policy</span>
-              <span class="policy-sub">Pure Statistical Optimization</span>
+            <button class="seg-btn" data-policy="unconstrained" id="btn-unconstrained">
+              <span class="seg-title">Max TSS Policy</span>
+              <span class="seg-hint">Unconstrained PR-AUC</span>
             </button>
           </div>
         </div>
 
-        <div class="control-group">
-          <label class="control-label" for="event-select">2. Select Real Partition 5 Active Region (Test Set: 2015–2018):</label>
-          <div class="select-wrapper">
-            <select id="event-select" class="event-dropdown">
-              <option value="case2" selected>AR 6103 (2015-11-04) — The Magnetic Energy Trap (High Magnetic Tension, Zero Eruption)</option>
-              <option value="case1">AR 6723 (2017-09-06) — Major X9.3 Eruption Event (Extreme Magnetic Shear + X-Ray Surge)</option>
-              <option value="case3">AR 6227 (2016-02-12) — Moderate Field Complexity with Rapid Coronal Flare Spike</option>
-              <option value="case4">AR 6543 (2017-04-02) — Quiet Sun Solar Minimum Background Baseline</option>
+        <div class="action-segment action-event">
+          <div class="segment-label">Observed Active Region (Test Split P5: 2015–2018):</div>
+          <div class="event-selector-wrap">
+            <select id="event-select" class="clean-select">
+              <option value="case2" selected>AR 6103 (2015-11-04) — The Stored Energy Trap (High Magnetics, Zero Eruption)</option>
+              <option value="case1">AR 6723 (2017-09-06) — Major X9.3 Eruption (Extreme Magnetic Shear + Coronal Blast)</option>
+              <option value="case3">AR 6227 (2016-02-12) — Subtle Magnetic Region with Rapid Coronal X-Ray Spike</option>
+              <option value="case4">AR 6543 (2017-04-02) — Solar Minimum Baseline (Quiet Background State)</option>
             </select>
           </div>
         </div>
       </div>
 
-      <!-- Key Finding Headline Banner -->
-      <div class="findings-banner" id="findings-banner">
-        <div class="banner-icon">💡</div>
-        <div class="banner-content">
-          <div class="banner-title" id="banner-title">Operational Breakthrough at FPR ≤ 5% Constraint:</div>
-          <div class="banner-text" id="banner-text">
-            Under identical operating policy (FPR ≤ 5%), adding NOAA GOES soft X-ray telemetry yields a 
-            <strong>+21.0% relative increase in True Skill Statistic (TSS = 0.3365 vs 0.2781)</strong> and catches 
-            <strong>512 additional dangerous solar flares</strong> (Recall 35.97% vs 29.95%) while holding false alarms to just 2.33%.
-          </div>
-        </div>
-        <div class="banner-stat">
-          <span class="stat-big">+21.0%</span>
-          <span class="stat-label">TSS Relative Gain</span>
-        </div>
-      </div>
-
-      <!-- Side-by-Side Model Comparison Grid -->
-      <div class="comparison-grid">
+      <!-- Main Visual Arena: Split Canvas (Sun Visualizer + Comparative Decision) -->
+      <div class="observatory-stage">
         
-        <!-- Model A: SWAN-only (Unimodal) -->
-        <div class="model-card card-swan" id="card-swan">
-          <div class="model-header">
-            <div class="model-meta">
-              <span class="tag tag-unimodal">UNIMODAL BASELINE</span>
-              <h3 class="model-name">SWAN-only Model</h3>
-              <p class="model-sub">44 Photospheric Magnetic Features (SDO/HMI Magnetograms)</p>
+        <!-- Left Wing: Living Sun & Real-time Coronal Telemetry -->
+        <div class="solar-column">
+          <div class="solar-stage-card">
+            <div class="card-caption">
+              <span class="caption-title">SDO/HMI Active Region Monitor</span>
+              <span class="caption-badge" id="ar-badge">HARPNUM 6103</span>
             </div>
-            <div class="model-features-count">44 Features</div>
-          </div>
 
-          <div class="inference-box">
-            <div class="inf-label-row">
-              <span class="inf-label">Predicted Flare Probability:</span>
-              <span class="inf-prob" id="swan-prob">0.718</span>
-            </div>
-            <div class="prob-bar-container">
-              <div class="prob-bar prob-bar-swan" id="swan-bar" style="width: 71.8%;"></div>
-              <div class="threshold-marker" id="swan-thresh-marker" style="left: 68.8%;" title="Threshold: 0.6887">
-                <span class="thresh-pin"></span>
-                <span class="thresh-tag" id="swan-thresh-tag">Thresh: 0.6887</span>
+            <!-- Animated Sun Canvas -->
+            <div class="sun-viewport">
+              <canvas id="sun-canvas" width="460" height="340" class="sun-canvas"></canvas>
+              <div class="sun-flare-indicator" id="sun-flare-indicator">
+                <span class="pulse-ring"></span>
+                <span class="indicator-text" id="sun-flare-text">NOMINAL STATE</span>
               </div>
             </div>
 
-            <div class="decision-row">
-              <span class="dec-title">Operational Decision:</span>
-              <span class="decision-badge badge-alert" id="swan-decision">🚨 FLARE ALERT ISSUED</span>
-            </div>
-            <div class="verification-note" id="swan-note">
-              Ground truth: <strong>QUIET (No Flare)</strong> ➔ <span class="text-danger">False Alarm (Type I Error)</span>
-            </div>
-          </div>
-
-          <div class="metrics-block">
-            <div class="metrics-title">Partition 5 Overall Performance (FPR ≤ 5% Policy):</div>
-            <div class="metrics-row">
-              <div class="metric-item">
-                <span class="m-val" id="swan-tss">0.2781</span>
-                <span class="m-lbl">TSS</span>
+            <!-- Waveform Card -->
+            <div class="waveform-wrap">
+              <div class="waveform-meta">
+                <span class="w-title">NOAA GOES-15 Soft X-Ray Irradiance (24-Hour Past Horizon)</span>
+                <span class="w-status text-cyan">AS-OF Temporal Alignment (Zero Leakage)</span>
               </div>
-              <div class="metric-item">
-                <span class="m-val" id="swan-recall">29.95%</span>
-                <span class="m-lbl">Recall (TPR)</span>
+              <div class="waveform-svg-box">
+                <svg id="goes-chart" viewBox="0 0 600 130" class="goes-svg"></svg>
               </div>
-              <div class="metric-item">
-                <span class="m-val" id="swan-fpr">2.13%</span>
-                <span class="m-lbl">FPR (False Alarms)</span>
-              </div>
-              <div class="metric-item">
-                <span class="m-val" id="swan-prec">37.21%</span>
-                <span class="m-lbl">Precision</span>
-              </div>
-              <div class="metric-item">
-                <span class="m-val" id="swan-prauc">0.3103</span>
-                <span class="m-lbl">PR-AUC</span>
+              <div class="flux-readout-row">
+                <div class="readout-item">
+                  <span class="r-lbl">Current Flux (xrsb):</span>
+                  <span class="r-val" id="val-xrsb">1.15e-07 W/m²</span>
+                </div>
+                <div class="readout-item">
+                  <span class="r-lbl">1-Hr Derivative:</span>
+                  <span class="r-val" id="val-deriv">-3.20e-08 W/m²/hr</span>
+                </div>
+                <div class="readout-item">
+                  <span class="r-lbl">24-Hr Peak:</span>
+                  <span class="r-val" id="val-max24">2.40e-07 W/m²</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Model B: SWAN + NOAA GOES (Multi-Modal) -->
-        <div class="model-card card-fused" id="card-fused">
-          <div class="model-header">
-            <div class="model-meta">
-              <span class="tag tag-multimodal">MULTI-MODAL FUSED</span>
-              <h3 class="model-name">SWAN + NOAA GOES Model</h3>
-              <p class="model-sub">44 Magnetic Features + 5 Coronal X-Ray Irradiance Features</p>
-            </div>
-            <div class="model-features-count badge-accent">49 Features</div>
-          </div>
-
-          <div class="inference-box">
-            <div class="inf-label-row">
-              <span class="inf-label">Predicted Flare Probability:</span>
-              <span class="inf-prob prob-fused" id="fused-prob">0.582</span>
-            </div>
-            <div class="prob-bar-container">
-              <div class="prob-bar prob-bar-fused" id="fused-bar" style="width: 58.2%;"></div>
-              <div class="threshold-marker" id="fused-thresh-marker" style="left: 69.5%;" title="Threshold: 0.6959">
-                <span class="thresh-pin"></span>
-                <span class="thresh-tag" id="fused-thresh-tag">Thresh: 0.6959</span>
+        <!-- Right Wing: The Core Comparative Experiment (SWAN vs SWAN+GOES) -->
+        <div class="comparison-column">
+          
+          <!-- Key Finding Headline Card -->
+          <div class="key-finding-hero" id="key-finding-hero">
+            <div class="hero-glow"></div>
+            <div class="hero-inner">
+              <div class="hero-left">
+                <div class="hero-tag" id="hero-tag">PRIMARY RESEARCH FINDING</div>
+                <h2 class="hero-headline" id="hero-headline">+21.0% Relative TSS Improvement</h2>
+                <p class="hero-paragraph" id="hero-paragraph">
+                  Under identical operating policy (FPR ≤ 5%), multi-modal SWAN+GOES fusion achieves 
+                  <strong>35.97% flare recall</strong> versus <strong>29.95%</strong> for SWAN-only, detecting 
+                  <strong>512 additional dangerous solar flares</strong> on untouched Partition 5.
+                </p>
               </div>
-            </div>
-
-            <div class="decision-row">
-              <span class="dec-title">Operational Decision:</span>
-              <span class="decision-badge badge-quiet" id="fused-decision">🟢 NOMINAL: QUIET SUN</span>
-            </div>
-            <div class="verification-note" id="fused-note">
-              Ground truth: <strong>QUIET (No Flare)</strong> ➔ <span class="text-success">Correct True Negative (Zero False Alarm)</span>
-            </div>
-          </div>
-
-          <div class="metrics-block">
-            <div class="metrics-title">Partition 5 Overall Performance (FPR ≤ 5% Policy):</div>
-            <div class="metrics-row">
-              <div class="metric-item">
-                <span class="m-val val-highlight" id="fused-tss">0.3365</span>
-                <span class="m-lbl">TSS (+21.0%)</span>
-              </div>
-              <div class="metric-item">
-                <span class="m-val val-highlight" id="fused-recall">35.97%</span>
-                <span class="m-lbl">Recall (+6.02%)</span>
-              </div>
-              <div class="metric-item">
-                <span class="m-val" id="fused-fpr">2.33%</span>
-                <span class="m-lbl">FPR (Ceiling: 5%)</span>
-              </div>
-              <div class="metric-item">
-                <span class="m-val val-highlight" id="fused-prec">39.50%</span>
-                <span class="m-lbl">Precision</span>
-              </div>
-              <div class="metric-item">
-                <span class="m-val val-highlight" id="fused-prauc">0.3668</span>
-                <span class="m-lbl">PR-AUC (+18.2%)</span>
+              <div class="hero-right">
+                <div class="gain-box">
+                  <span class="gain-number" id="gain-number">+21.0%</span>
+                  <span class="gain-label">Relative TSS Gain</span>
+                </div>
               </div>
             </div>
           </div>
+
+          <!-- Dual Model Evaluation Cards -->
+          <div class="model-cards-container">
+            
+            <!-- SWAN-Only Baseline Card -->
+            <div class="model-showcase-card card-swan" id="card-swan">
+              <div class="card-glass-header">
+                <div class="model-badge">UNIMODAL BASELINE</div>
+                <h3 class="model-title">SWAN-only Model</h3>
+                <p class="model-features-desc">44 Photospheric Magnetic Parameters (SDO/HMI)</p>
+              </div>
+
+              <div class="dial-verdict-row">
+                <div class="dial-container">
+                  <svg class="progress-ring" viewBox="0 0 120 120">
+                    <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+                    <circle class="ring-fg ring-swan" id="ring-swan" cx="60" cy="60" r="50"></circle>
+                  </svg>
+                  <div class="ring-label">
+                    <span class="ring-value" id="swan-prob">71.8%</span>
+                    <span class="ring-caption">Probability</span>
+                  </div>
+                </div>
+
+                <div class="verdict-summary">
+                  <div class="decision-pill pill-alert" id="swan-decision">
+                    <span class="pill-dot"></span>
+                    <span id="swan-decision-text">FLARE ALERT ISSUED</span>
+                  </div>
+                  <div class="threshold-meta">
+                    Operating Threshold: <code id="swan-thresh">0.6887</code>
+                  </div>
+                  <div class="ground-truth-match" id="swan-note">
+                    Ground Truth: <strong>QUIET SUN</strong> ➔ <span class="text-rose">False Alarm (Type I Error)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- P5 Performance Strip -->
+              <div class="metrics-strip">
+                <div class="strip-item">
+                  <span class="s-val" id="swan-tss">0.2781</span>
+                  <span class="s-lbl">TSS</span>
+                </div>
+                <div class="strip-item">
+                  <span class="s-val" id="swan-recall">29.95%</span>
+                  <span class="s-lbl">Recall (TPR)</span>
+                </div>
+                <div class="strip-item">
+                  <span class="s-val" id="swan-fpr">2.13%</span>
+                  <span class="s-lbl">False Alarms (FPR)</span>
+                </div>
+                <div class="strip-item">
+                  <span class="s-val" id="swan-prec">37.21%</span>
+                  <span class="s-lbl">Precision</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SWAN + GOES Multi-Modal Card -->
+            <div class="model-showcase-card card-fused" id="card-fused">
+              <div class="card-glass-header">
+                <div class="model-badge badge-fused">MULTI-MODAL FUSED</div>
+                <h3 class="model-title text-cyan">SWAN + NOAA GOES</h3>
+                <p class="model-features-desc">44 Magnetic Parameters + 5 Coronal X-Ray Indicators</p>
+              </div>
+
+              <div class="dial-verdict-row">
+                <div class="dial-container">
+                  <svg class="progress-ring" viewBox="0 0 120 120">
+                    <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+                    <circle class="ring-fg ring-fused" id="ring-fused" cx="60" cy="60" r="50"></circle>
+                  </svg>
+                  <div class="ring-label">
+                    <span class="ring-value text-cyan" id="fused-prob">58.2%</span>
+                    <span class="ring-caption">Probability</span>
+                  </div>
+                </div>
+
+                <div class="verdict-summary">
+                  <div class="decision-pill pill-quiet" id="fused-decision">
+                    <span class="pill-dot"></span>
+                    <span id="fused-decision-text">NOMINAL: QUIET SUN</span>
+                  </div>
+                  <div class="threshold-meta">
+                    Operating Threshold: <code id="fused-thresh">0.6959</code>
+                  </div>
+                  <div class="ground-truth-match" id="fused-note">
+                    Ground Truth: <strong>QUIET SUN</strong> ➔ <span class="text-emerald">Correct Quiet (Zero False Alarm)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- P5 Performance Strip -->
+              <div class="metrics-strip">
+                <div class="strip-item">
+                  <span class="s-val text-emerald" id="fused-tss">0.3365</span>
+                  <span class="s-lbl">TSS (+21.0%)</span>
+                </div>
+                <div class="strip-item">
+                  <span class="s-val text-emerald" id="fused-recall">35.97%</span>
+                  <span class="s-lbl">Recall (+6.02%)</span>
+                </div>
+                <div class="strip-item">
+                  <span class="s-val" id="fused-fpr">2.33%</span>
+                  <span class="s-lbl">False Alarms (FPR)</span>
+                </div>
+                <div class="strip-item">
+                  <span class="s-val text-emerald" id="fused-prec">39.50%</span>
+                  <span class="s-lbl">Precision</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Scientific Telemetry & Physics Breakdown -->
+          <div class="physics-card">
+            <div class="physics-header">
+              <span class="p-icon">⚛️</span>
+              <span class="p-title">Physical Mechanism & Feature Telemetry:</span>
+            </div>
+            <div class="physics-text" id="physics-text">
+              AR 6103 stored massive magnetic energy (high <code>TOTUSJH = 4,950 A</code>). SWAN-only predicted a 71.8% probability, triggering a <em>False Alarm</em>. However, GOES detected a flat, decaying X-ray derivative (-3.2e-08), confirming zero coronal reconnection. SWAN+GOES lowered the probability to 58.2%, suppressing the alert and preserving operational trust!
+            </div>
+            <div class="physics-chips">
+              <span class="p-chip">TOTUSJH: <strong id="val-totusjh">4,950 A</strong></span>
+              <span class="p-chip">USFLUX: <strong id="val-usflux">3.51e+22 Mx</strong></span>
+              <span class="p-chip">R_VALUE: <strong id="val-rvalue">4.61</strong></span>
+              <span class="p-chip">ABSNJZH: <strong id="val-absnjzh">1.84e+02 G²/m</strong></span>
+            </div>
+          </div>
+
         </div>
 
       </div>
 
-      <!-- Physical Telemetry Inspection Panel (Waveform + Magnetics) -->
-      <div class="telemetry-grid">
-        <!-- GOES Waveform -->
-        <div class="telemetry-card">
-          <div class="tel-header">
-            <h4>🛰️ NOAA GOES-15 Coronal Soft X-Ray Irradiance Telemetry (24-Hour Past Window)</h4>
-            <span class="tel-badge">1-Min High Cadence</span>
-          </div>
-          <div class="chart-container" id="goes-chart-container">
-            <svg id="goes-chart" viewBox="0 0 700 200" class="waveform-svg"></svg>
-          </div>
-          <div class="tel-stats-row">
-            <div class="tel-stat"><span class="t-lbl">Instantaneous Flux (xrsb):</span> <span class="t-val" id="val-xrsb">1.15e-07 W/m²</span></div>
-            <div class="tel-stat"><span class="t-lbl">1-Hour Derivative (dF/dt):</span> <span class="t-val" id="val-deriv">-3.20e-08 W/m²/hr (Flat)</span></div>
-            <div class="tel-stat"><span class="t-lbl">24-Hour Max Peak:</span> <span class="t-val" id="val-max24">2.40e-07 W/m²</span></div>
-            <div class="tel-stat"><span class="t-lbl">Temporal Alignment:</span> <span class="t-val text-success">Strict AS-OF (Zero Leakage)</span></div>
-          </div>
-        </div>
+    </section>
 
-        <!-- SWAN Magnetics -->
-        <div class="telemetry-card">
-          <div class="tel-header">
-            <h4>🧲 SDO/HMI Active-Region Photospheric Magnetogram Telemetry</h4>
-            <span class="tel-badge">12-Min Cadence</span>
+    <!-- =========================================================================
+         TAB 2: BIG DATA PIPELINE & ARCHITECTURE (CSE412 CORE)
+         ========================================================================= -->
+    <section id="tab-pipeline" class="tab-pane">
+      
+      <!-- Architectural Introduction Header -->
+      <div class="section-hero">
+        <div class="hero-badge">DISTRIBUTED SYSTEM ARCHITECTURE</div>
+        <h2 class="section-heading">End-to-End Distributed Big Data Pipeline</h2>
+        <p class="section-lead">
+          Addressing the scale, memory overhead, and temporal correlation of 837,426 multivariate records across 5 benchmark partitions using Apache Hadoop, Spark 3.5 MLlib, and Apache Hive.
+        </p>
+      </div>
+
+      <!-- Living Sequential Pipeline Stream -->
+      <div class="pipeline-track">
+        <div class="pipeline-nodes-row">
+          
+          <div class="p-node active" data-stage="1" id="p-node-1">
+            <div class="node-indicator">01</div>
+            <div class="node-body">
+              <div class="node-system">TELEMETRY INGESTION</div>
+              <div class="node-tech">AS-OF Temporal Join</div>
+              <div class="node-desc">Zero Future Look-Ahead</div>
+            </div>
+            <div class="node-status-dot"></div>
           </div>
-          <div class="magnetic-grid">
-            <div class="mag-item">
-              <span class="mag-name">TOTUSJH</span>
-              <span class="mag-desc">Total Unsigned Vertical Current</span>
-              <span class="mag-val" id="val-totusjh">4,950 A</span>
+
+          <div class="p-connector"><div class="connector-line"></div></div>
+
+          <div class="p-node" data-stage="2" id="p-node-2">
+            <div class="node-indicator">02</div>
+            <div class="node-body">
+              <div class="node-system">DISTRIBUTED STORAGE</div>
+              <div class="node-tech">Apache Hadoop HDFS</div>
+              <div class="node-desc">Snappy Parquet Warehouse</div>
             </div>
-            <div class="mag-item">
-              <span class="mag-name">USFLUX</span>
-              <span class="mag-desc">Total Unsigned Magnetic Flux</span>
-              <span class="mag-val" id="val-usflux">3.51e+22 Mx</span>
-            </div>
-            <div class="mag-item">
-              <span class="mag-name">R_VALUE</span>
-              <span class="mag-desc">Flux Near Polarity Inversion Lines</span>
-              <span class="mag-val" id="val-rvalue">4.61</span>
-            </div>
-            <div class="mag-item">
-              <span class="mag-name">ABSNJZH</span>
-              <span class="mag-desc">Absolute Net Current Helicity</span>
-              <span class="mag-val" id="val-absnjzh">1.84e+02 G²/m</span>
-            </div>
+            <div class="node-status-dot"></div>
           </div>
-          <div class="physics-explanation" id="physics-explanation">
-            <strong>Physics Insight:</strong> AR 6103 stores high magnetic tension (high <code>TOTUSJH</code>), misleading magnetic-only models. However, the flat GOES flux derivative indicates no active coronal reconnection, allowing the combined model to avoid a false alarm.
+
+          <div class="p-connector"><div class="connector-line"></div></div>
+
+          <div class="p-node" data-stage="3" id="p-node-3">
+            <div class="node-indicator">03</div>
+            <div class="node-body">
+              <div class="node-system">IN-MEMORY ETL</div>
+              <div class="node-tech">Apache Spark 3.5</div>
+              <div class="node-desc">P1–P3 Median Imputation</div>
+            </div>
+            <div class="node-status-dot"></div>
           </div>
+
+          <div class="p-connector"><div class="connector-line"></div></div>
+
+          <div class="p-node" data-stage="4" id="p-node-4">
+            <div class="node-indicator">04</div>
+            <div class="node-body">
+              <div class="node-system">PARALLEL ML TRAINING</div>
+              <div class="node-tech">Spark MLlib RandomForest</div>
+              <div class="node-desc">13.17:1 Cost Weighting</div>
+            </div>
+            <div class="node-status-dot"></div>
+          </div>
+
+          <div class="p-connector"><div class="connector-line"></div></div>
+
+          <div class="p-node" data-stage="5" id="p-node-5">
+            <div class="node-indicator">05</div>
+            <div class="node-body">
+              <div class="node-system">DATA WAREHOUSE</div>
+              <div class="node-tech">Apache Hive 4.0</div>
+              <div class="node-desc">33 Persisted Experiments</div>
+            </div>
+            <div class="node-status-dot"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Selected Stage Deep-Dive Spotlight Card -->
+      <div class="stage-spotlight-card">
+        <div class="spotlight-header">
+          <div class="spotlight-badge" id="spotlight-badge">STAGE 01 DETAIL</div>
+          <h3 class="spotlight-title" id="spotlight-title">Multi-Modal Ingestion & Temporal AS-OF Joiner</h3>
+        </div>
+        <div class="spotlight-grid" id="spotlight-grid">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Rigorous Tool Justification Grid (CSE412 Requirement) -->
+      <div class="justification-container">
+        <h3 class="justification-heading">Architectural Tool Justifications (Why the Big Data Stack was Essential)</h3>
+        
+        <div class="justification-cards-grid">
+          
+          <div class="j-card">
+            <div class="j-card-header">
+              <span class="j-icon">🐘</span>
+              <div class="j-header-meta">
+                <h4>Hadoop HDFS vs Local Filesystem</h4>
+                <span class="j-sub">Block-Level Distribution & Fault Tolerance</span>
+              </div>
+            </div>
+            <p class="j-text">
+              Local filesystems lock compute to a single disk. HDFS fragments files into 128 MB blocks across cluster nodes. Crucially, Spark leverages <strong>data locality</strong> to schedule execution on the physical node hosting the block, avoiding costly network transfer of 837k time-series rows.
+            </p>
+          </div>
+
+          <div class="j-card">
+            <div class="j-card-header">
+              <span class="j-icon">⚡</span>
+              <div class="j-header-meta">
+                <h4>Apache Spark vs Pandas</h4>
+                <span class="j-sub">In-Memory Directed Acyclic Graph (DAG)</span>
+              </div>
+            </div>
+            <p class="j-text">
+              Single-node Pandas crashes with Out-Of-Memory (OOM) during rolling window joins across 8.9 GB raw time-series. Spark constructs an optimized in-memory execution DAG with lazy evaluation and distributed caching, scaling effortlessly across all CPU cores.
+            </p>
+          </div>
+
+          <div class="j-card">
+            <div class="j-card-header">
+              <span class="j-icon">🌲</span>
+              <div class="j-header-meta">
+                <h4>Spark MLlib vs Scikit-Learn</h4>
+                <span class="j-sub">Distributed Tree Induction via DTStatsAggregator</span>
+              </div>
+            </div>
+            <p class="j-text">
+              Scikit-learn requires all training data to fit in single-machine RAM and constructs trees sequentially. Spark MLlib distributes tree node splitting across worker executors using <code>DTStatsAggregator</code>, training 100 deep trees on 518k samples in minutes.
+            </p>
+          </div>
+
+          <div class="j-card">
+            <div class="j-card-header">
+              <span class="j-icon">🐝</span>
+              <div class="j-header-meta">
+                <h4>Apache Hive vs Traditional MySQL</h4>
+                <span class="j-sub">Schema-on-Read over Data Warehouse</span>
+              </div>
+            </div>
+            <p class="j-text">
+              Traditional RDBMS requires duplicating data into proprietary tables. Apache Hive creates a virtual SQL metastore directly over the existing HDFS Parquet files. Decouples compute from storage, allowing Spark SQL and audit scripts to query model experiments simultaneously.
+            </p>
+          </div>
+
         </div>
       </div>
 
     </section>
 
-    <!-- TAB 2: BIG DATA PIPELINE & INFRASTRUCTURE -->
-    <section id="tab-pipeline" class="tab-content">
+    <!-- =========================================================================
+         TAB 3: HIVE METASTORE & EXPERIMENT AUDIT
+         ========================================================================= -->
+    <section id="tab-hive" class="tab-pane">
       
-      <!-- Interactive Pipeline Flow Banner -->
-      <div class="pipeline-flow-wrapper">
-        <h3 class="section-title">End-to-End Distributed Data Flow (Click any stage to inspect technical specs)</h3>
-        
-        <div class="flow-stages-row">
-          <div class="flow-stage active" data-stage="1" id="stage-btn-1">
-            <div class="stage-step">STAGE 01</div>
-            <div class="stage-name">Multi-Modal Ingestion</div>
-            <div class="stage-sub">SWAN-SF (12m) + GOES (1m)</div>
-            <div class="stage-pill">Zero Look-Ahead</div>
+      <!-- Hive Header & Filters -->
+      <div class="hive-header-panel">
+        <div class="hive-brand-info">
+          <div class="hive-icon-badge">🐝</div>
+          <div>
+            <h2 class="hive-main-title">Apache Hive Metastore Catalog</h2>
+            <p class="hive-location-path">Database: <code>solar_flare</code> • Table: <code>model_experiments</code> (33 cataloged runs)</p>
           </div>
-          <div class="flow-arrow">➔</div>
+        </div>
 
-          <div class="flow-stage" data-stage="2" id="stage-btn-2">
-            <div class="stage-step">STAGE 02</div>
-            <div class="stage-name">Hadoop HDFS Storage</div>
-            <div class="stage-sub">hdfs://localhost:9000</div>
-            <div class="stage-pill">837k Rows • Parquet</div>
-          </div>
-          <div class="flow-arrow">➔</div>
-
-          <div class="flow-stage" data-stage="3" id="stage-btn-3">
-            <div class="stage-step">STAGE 03</div>
-            <div class="stage-name">Spark In-Memory ETL</div>
-            <div class="stage-sub">Imputer • VectorAssembler</div>
-            <div class="stage-pill">Fitted on P1–P3</div>
-          </div>
-          <div class="flow-arrow">➔</div>
-
-          <div class="flow-stage" data-stage="4" id="stage-btn-4">
-            <div class="stage-step">STAGE 04</div>
-            <div class="stage-name">Spark MLlib Distributed RF</div>
-            <div class="stage-sub">100 Trees • Depth 10</div>
-            <div class="stage-pill">13.17:1 Cost Weight</div>
-          </div>
-          <div class="flow-arrow">➔</div>
-
-          <div class="flow-stage" data-stage="5" id="stage-btn-5">
-            <div class="stage-step">STAGE 05</div>
-            <div class="stage-name">Apache Hive Metastore</div>
-            <div class="stage-sub">solar_flare Database</div>
-            <div class="stage-pill">33 Benchmark Runs</div>
-          </div>
+        <div class="hive-filter-chips">
+          <button class="chip active" data-filter="ALL">All Runs (33)</button>
+          <button class="chip" data-filter="SWAN+GOES">Multi-Modal (SWAN+GOES)</button>
+          <button class="chip" data-filter="SWAN-only">Magnetic Baseline (SWAN)</button>
+          <button class="chip" data-filter="FPR5">FPR ≤ 5% Policy</button>
         </div>
       </div>
 
-      <!-- Stage Detail Inspector Panel -->
-      <div class="stage-detail-card" id="stage-detail-panel">
-        <div class="detail-header">
-          <span class="detail-badge" id="detail-badge">STAGE 01</span>
-          <h3 class="detail-title" id="detail-title">Multi-Modal Telemetry Ingestion & AS-OF Temporal Alignment</h3>
+      <!-- SQL Query Showcase -->
+      <div class="sql-terminal-box">
+        <div class="terminal-bar">
+          <div class="terminal-dots"><span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span></div>
+          <span class="terminal-title">HiveQL Query Execution</span>
+          <span class="terminal-warehouse">hdfs://localhost:9000/user/hive/warehouse/solar_flare.db</span>
         </div>
-        <div class="detail-grid" id="detail-grid">
-          <!-- Dynamically populated by JS -->
-        </div>
+        <pre class="terminal-code"><code>SELECT experiment_id, feature_set, round(decision_threshold, 4) AS threshold, 
+       round(tss, 4) AS tss, round(tpr * 100, 2) AS recall_pct, round(fpr * 100, 2) AS fpr_pct, 
+       round(precision * 100, 2) AS precision_pct, round(f1_score, 4) AS f1_score, tp, fp, fn
+FROM solar_flare.model_experiments 
+ORDER BY tss DESC;</code></pre>
       </div>
 
-      <!-- Rigorous Tool Justification Matrix (Direct CSE412 Requirement) -->
-      <div class="tools-matrix-card">
-        <div class="matrix-header">
-          <h3 class="section-title">Architectural Tool Justifications (Course Requirements Matrix)</h3>
-          <p class="matrix-sub">Technical justifications for why standard single-node tools (Pandas/Scikit-Learn/Postgres) were rejected in favor of the Apache Big Data Stack.</p>
-        </div>
-
-        <div class="justification-table-wrapper">
-          <table class="justification-table">
+      <!-- Experiments Table -->
+      <div class="table-card">
+        <div class="table-container">
+          <table class="modern-table">
             <thead>
               <tr>
-                <th>Component</th>
-                <th>Selected Big Data Tool</th>
-                <th>Rejected Alternative</th>
-                <th>Technical & Architectural Justification</th>
+                <th data-sort="id">Experiment Run ID ⬍</th>
+                <th data-sort="features">Feature Representation ⬍</th>
+                <th data-sort="trees">Ensemble Config ⬍</th>
+                <th data-sort="weight">Class Weight ⬍</th>
+                <th data-sort="thresh">Decision Thresh ⬍</th>
+                <th data-sort="tss" class="th-active">TSS Score ⬍</th>
+                <th data-sort="recall">Recall (TPR) ⬍</th>
+                <th data-sort="fpr">False Alarms (FPR) ⬍</th>
+                <th data-sort="precision">Precision ⬍</th>
+                <th data-sort="f1">F1-Score ⬍</th>
+                <th>True Positive (TP)</th>
+                <th>False Positive (FP)</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td><strong>Distributed Storage</strong></td>
-                <td><span class="tag-tool tag-hdfs">Apache Hadoop HDFS</span></td>
-                <td>Local POSIX Filesystem / NFS</td>
-                <td>Provides block-level (128 MB) fault tolerance and rack awareness across commodity nodes. Crucially, allows Spark to schedule compute on the exact physical worker hosting data blocks (<code>PROCESS_LOCAL</code>), avoiding expensive network shuffles across 837k rows.</td>
-              </tr>
-              <tr>
-                <td><strong>In-Memory Processing</strong></td>
-                <td><span class="tag-tool tag-spark">Apache Spark 3.5 (PySpark)</span></td>
-                <td>Pandas / Python Multiprocessing</td>
-                <td>Single-node Pandas crashes with Out-Of-Memory (OOM) during rolling window joins across 8.9 GB raw time-series. Spark constructs an optimized in-memory DAG (Directed Acyclic Graph) with lazy execution, distributed caching, and zero memory thrashing.</td>
-              </tr>
-              <tr>
-                <td><strong>Distributed ML Engine</strong></td>
-                <td><span class="tag-tool tag-spark">Spark MLlib RandomForest</span></td>
-                <td>Scikit-learn <code>RandomForestClassifier</code></td>
-                <td>Scikit-learn requires all training data to fit in single-machine RAM and trains trees sequentially. Spark MLlib distributes tree node splitting across worker cores using <code>DTStatsAggregator</code>, training 100 deep trees on 518k samples in minutes.</td>
-              </tr>
-              <tr>
-                <td><strong>Data Warehouse / Catalog</strong></td>
-                <td><span class="tag-tool tag-hive">Apache Hive 4.0 Metastore</span></td>
-                <td>Traditional Relational RDBMS (MySQL)</td>
-                <td>Provides schema-on-read directly over the existing HDFS Parquet warehouse without copying or duplicating data. Decouples compute from storage, enabling Spark SQL, Hive CLI, and external audit scripts to query model experiments simultaneously.</td>
-              </tr>
-              <tr>
-                <td><strong>Storage Format</strong></td>
-                <td><span class="tag-tool tag-parquet">Apache Parquet (Snappy)</span></td>
-                <td>CSV / TSV Flat Files</td>
-                <td>Columnar layout enables projection pruning (reading only requested features from disk) and predicate pushdown. Snappy block compression reduced raw 8.9 GB TSV footprint by over 75% down to ~2.1 GB while maintaining high-speed CPU decompression.</td>
-              </tr>
+            <tbody id="hive-tbody">
+              <!-- Populated by JS -->
             </tbody>
           </table>
         </div>
@@ -405,94 +521,19 @@
 
     </section>
 
-    <!-- TAB 3: HIVE METASTORE & EXPERIMENT CATALOG -->
-    <section id="tab-hive" class="tab-content">
-      
-      <div class="hive-controls-bar">
-        <div class="hive-title-meta">
-          <span class="tag tag-hive">HIVE DATA WAREHOUSE</span>
-          <h3>Table: <code>solar_flare.model_experiments</code> (33 Persisted Runs)</h3>
-          <p class="hive-sub">Location: <code>hdfs://localhost:9000/user/hive/warehouse/solar_flare.db/model_experiments</code></p>
-        </div>
-
-        <div class="hive-filters">
-          <div class="filter-item">
-            <label for="filter-features">Feature Set:</label>
-            <select id="filter-features" class="hive-select">
-              <option value="ALL">All Feature Sets (33)</option>
-              <option value="SWAN+GOES" selected>SWAN+GOES Multi-Modal</option>
-              <option value="SWAN-only">SWAN-only Baseline</option>
-              <option value="GOES-only">GOES-only Telemetry</option>
-            </select>
-          </div>
-          <div class="filter-item">
-            <label for="filter-policy">Policy:</label>
-            <select id="filter-policy" class="hive-select">
-              <option value="ALL">All Policies</option>
-              <option value="FPR5">FPR ≤ 5% Policy</option>
-              <option value="FPR10">FPR ≤ 10% Policy</option>
-              <option value="TUNED">Tuned / Unconstrained</option>
-            </select>
-          </div>
-          <div class="filter-item">
-            <label for="search-input">Search Run ID:</label>
-            <input type="text" id="search-input" class="hive-input" placeholder="e.g. STAGE1_SWAN_GOES...">
-          </div>
-        </div>
-      </div>
-
-      <!-- SQL Query View Drawer -->
-      <div class="sql-query-card">
-        <div class="sql-header">
-          <span class="sql-badge">HiveQL Query Executed</span>
-          <span class="sql-meta">Database: <code>solar_flare</code></span>
-        </div>
-        <pre class="sql-code"><code>SELECT experiment_id, feature_set, round(decision_threshold, 4) AS thresh, 
-       round(tss, 4) AS tss, round(tpr * 100, 2) AS recall_pct, round(fpr * 100, 2) AS fpr_pct, 
-       round(precision * 100, 2) AS prec_pct, round(f1_score, 4) AS f1, tp, fp, tn, fn
-FROM solar_flare.model_experiments 
-ORDER BY tss DESC;</code></pre>
-      </div>
-
-      <!-- Experiments Data Table -->
-      <div class="table-responsive">
-        <table class="hive-table" id="hive-experiments-table">
-          <thead>
-            <tr>
-              <th data-sort="id">Experiment ID ⬍</th>
-              <th data-sort="features">Feature Set ⬍</th>
-              <th data-sort="trees">Trees / Depth ⬍</th>
-              <th data-sort="weight">Weight ⬍</th>
-              <th data-sort="thresh">Threshold ⬍</th>
-              <th data-sort="tss" class="th-sort-active">TSS ⬍</th>
-              <th data-sort="recall">Recall (TPR) ⬍</th>
-              <th data-sort="fpr">FPR ⬍</th>
-              <th data-sort="precision">Precision ⬍</th>
-              <th data-sort="f1">F1-Score ⬍</th>
-              <th>TP</th>
-              <th>FP</th>
-              <th>Missed (FN)</th>
-            </tr>
-          </thead>
-          <tbody id="experiments-tbody">
-            <!-- Populated dynamically by app.js with real 33 runs -->
-          </tbody>
-        </table>
-      </div>
-
-    </section>
-
   </main>
 
-  <!-- Application Footer -->
+  <!-- Clean Footer -->
   <footer class="app-footer">
     <div class="footer-left">
-      <span>Project: <strong>CSE412 Big Data Analytics Course Project</strong></span>
-      <span>•</span>
-      <span>Evaluation Split: <strong>Partition 5 (209,809 events, Zero Leakage)</strong></span>
+      <span>CSE412 Big Data Analytics Course Project</span>
+      <span class="footer-sep">•</span>
+      <span>Evaluated on Untouched Partition 5 (209,809 events)</span>
     </div>
     <div class="footer-right">
-      <span>Repository: <a href="https://github.com/MaazAli-commits/large-scale-solar-flare-detection" target="_blank" class="repo-link">github.com/MaazAli-commits/large-scale-solar-flare-detection</a></span>
+      <a href="https://github.com/MaazAli-commits/large-scale-solar-flare-detection" target="_blank" class="footer-link">
+        GitHub Repository ↗
+      </a>
     </div>
   </footer>
 
